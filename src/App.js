@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
+import Header from "./components/layout/Header";
 import Todos from "./components/Todos";
 import AddTodo from "./components/AddTodo";
 import About from "./components/pages/About";
-import Header from "./components/layout/Header";
+// import uuid from 'uuid';
 import axios from "axios";
 
 class App extends Component {
@@ -44,11 +45,10 @@ class App extends Component {
         title,
         completed: false
       })
-      .then(res =>
-        this.setState({
-          todos: [...this.state.todos, res.data]
-        })
-      );
+      .then(res => {
+        // res.data.id = uuid.v4();
+        this.setState({ todos: [...this.state.todos, res.data] });
+      });
   };
 
   render() {
