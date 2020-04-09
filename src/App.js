@@ -5,16 +5,17 @@ import AddTodo from "./components/AddTodo";
 import About from "./components/pages/About";
 import Header from "./components/layout/Header";
 import uuid from "uuid"
+import axos from "axios"
 
 class App extends Component {
   state = {
-    todos: [
-      { id: uuid.v4(), title: "take out the trash", completed: false },
-      { id: uuid.v4(), title: "dinner with gf", completed: false },
-      { id: uuid.v4(), title: "meeting with boss", completed: false }
-    ]
+    todos: []
+    
   };
 
+  componentDidMount(){
+    axos.get('https://jsonplaceholder.typicode.com/todos').then(res => console.log(res.data))
+  }
   // toggle todo comppete
   markComplete = id => {
     this.setState({
