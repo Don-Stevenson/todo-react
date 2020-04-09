@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import Todos from "./components/Todos";
 
 class App extends Component {
@@ -10,18 +10,25 @@ class App extends Component {
     ]
   };
 
-  markComplete = () => {
-    console.log("from app js")
+  markComplete = id => {
+    this.setState({
+      todos: this.state.todos.map(todo => {
+        if (todo.id === id) {
+          todo.completed = !todo.completed;
+        }
+        return todo;
+      })
+    });
+  };
+
+  render() {
+    console.log(this.state.todos.title);
+    return (
+      <div className="App">
+        <Todos todos={this.state.todos} markComplete={this.markComplete} />
+      </div>
+    );
   }
-  
-  render () {
-    console.log(this.state.todos.title)
-  return (
-    <div className="App">
-      <Todos todos={this.state.todos} markComplete={this.markComplete}/>
-    </div>
-  ); 
- }
 }
 
 export default App;
