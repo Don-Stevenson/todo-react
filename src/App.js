@@ -10,7 +10,6 @@ class App extends Component {
     ]
   };
 
-  
   // toggle todo comppete
   markComplete = id => {
     this.setState({
@@ -23,11 +22,17 @@ class App extends Component {
     });
   };
 
+// delete todo
+delTodo =(id)=> {
+  this.setState({todos: [...this.state.todos.filter(todo => todo.id !== id), ]})
+
+}
+
   render() {
     console.log(this.state.todos.title);
     return (
       <div className="App">
-        <Todos todos={this.state.todos} markComplete={this.markComplete} />
+        <Todos todos={this.state.todos} markComplete={this.markComplete} delTodo={this.delTodo}/>
       </div>
     );
   }
