@@ -9,12 +9,16 @@ class App extends Component {
       { id: 3, title: "meeting with boss", completed: false }
     ]
   };
+
+  markComplete = () => {
+    console.log("from app js")
+  }
   
   render () {
     console.log(this.state.todos.title)
   return (
     <div className="App">
-      <Todos todos={this.state.todos} />
+      <Todos todos={this.state.todos} markComplete={this.markComplete}/>
     </div>
   ); 
  }
