@@ -5,11 +5,13 @@ class App extends Component {
   state = {
     todos: [
       { id: 1, title: "take out the trash", completed: false },
-      { id: 2, title: "dinner with gf", completed: true },
+      { id: 2, title: "dinner with gf", completed: false },
       { id: 3, title: "meeting with boss", completed: false }
     ]
   };
 
+  
+  // toggle todo comppete
   markComplete = id => {
     this.setState({
       todos: this.state.todos.map(todo => {
