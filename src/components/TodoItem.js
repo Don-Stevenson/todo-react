@@ -39,7 +39,7 @@ const btnStyle = {
   padding: '5px 9px',
   borderRadius: '50%',
   cursor: 'pointer',
-  float: 'right'
+  float: 'right'  
 }
 
 export default TodoItem
