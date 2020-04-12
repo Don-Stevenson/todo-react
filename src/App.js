@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState} from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Header from './components/layout/Header';
 import Todos from './components/Todos';
@@ -9,10 +9,8 @@ import axios from 'axios';
 
 import './App.css';
 
-class App extends Component {
-  state = {
-    todos: []
-  };
+function App {
+ const [todos, setTodos] = useState(0)
 
   componentDidMount() {
     axios
