@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React, { useState, useEffect} from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Header from './components/layout/Header';
 import Todos from './components/Todos';
@@ -12,11 +12,11 @@ import './App.css';
 function App {
  const [todos, setTodos] = useState(0)
 
-  componentDidMount() {
+ useEffect(() =>  {
     axios
       .get('https://jsonplaceholder.typicode.com/todos?_limit=10')
       .then(res => this.setState({ todos: res.data }));
-  }
+  },[])
 
   // Toggle Complete
   markComplete = id => {
