@@ -10,19 +10,21 @@ import axios from "axios";
 import "./App.css";
 
 const App = props => {
-   const [state, setState] =  useState({
+  const [todo, setTodo] = useState();
+  const [state, setState] = useState({
     todos: []
-  }) 
+  });
 
   useEffect(() => {
     axios
       .get("https://jsonplaceholder.typicode.com/todos?_limit=10")
-      .then(res => setState({ todos: res.data }));
+      .then(res => setState({ ...state, todos: res.data }));
   }, []);
 
   // Toggle Complete
   const markComplete = id => {
     setState({
+      ...state,
       todos: state.todos.map(todo => {
         if (todo.id === id) {
           todo.completed = !todo.completed;
@@ -34,11 +36,14 @@ const App = props => {
 
   // Delete Todo
   const delTodo = id => {
-    axios.delete(`https://jsonplaceholder.typicode.com/todos/${id}`).then(res =>
-      setState({
-        todos: [...state.todos.filter(todo => todo.id !== id)]
-      })
-    );
+    axios
+      .delete(`https://jsonplaceholder.typicode.com/todos/${id}`)
+      .then(res =>
+        setState({
+          ...state,
+          todos: [...state.todos.filter(todo => todo.id !== id)]
+        })
+      );
   };
 
   // Add Todo
@@ -50,7 +55,7 @@ const App = props => {
       })
       .then(res => {
         // res.data.id = uuid.v4();
-        setState({ todos: [...state.todos, res.data] });
+        setState({ ...state, todos: [...state.todos, res.data] });
       });
   };
 
@@ -64,11 +69,11 @@ const App = props => {
             path="/"
             render={props => (
               <React.Fragment>
-                <AddTodo addTodo={this.addTodo} />
+                <AddTodo addTodo={addTodo} />
                 <Todos
                   todos={state.todos}
-                  markComplete={this.markComplete}
-                  delTodo={this.delTodo}
+                  markComplete={markComplete}
+                  delTodo={delTodo}
                 />
               </React.Fragment>
             )}
