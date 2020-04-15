@@ -10,7 +10,7 @@ import axios from "axios";
 import "./App.css";
 
 const App = props => {
-  const [todos, setTodos] = useState();
+  const [todos, setTodos] = useState([]);
   const [state, setState] = useState({
     todos: []
   });
