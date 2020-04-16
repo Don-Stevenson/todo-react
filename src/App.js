@@ -18,7 +18,7 @@ const App = props => {
   useEffect(() => {
     axios
       .get("https://jsonplaceholder.typicode.com/todos?_limit=10")
-      .then(res => setState({ ...state, todos: res.data }));
+      .then(res => setTodos(res.data));
   }, []);
 
   // Toggle Complete
